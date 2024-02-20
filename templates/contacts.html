@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <center>
+        <div class="contacts-main">
+            <section class="main-content">
+                <div class="main-content-contacts">
+                    <h2>Контакты</h2>
+                    <p>Свяжитесь с нами для получения дополнительной информации.</p>
+                    <p>Адрес: Шамши Калдаякова 17</p>
+                    <p>Email: steppe@astana.kz</p>
+                    <p>Заполните вашу заявку чтобы получить ответ:</p>
+                    <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+                        <form method="POST" action="{% url 'question_save' %}">
+                            {% csrf_token %}
+                            <div class="text-field">
+                            <label class="text-field__label" for="firstname">Имя (Обязательно)</label>
+                            <input class="text-field__input" type="text" name="firstname" id="firstname" required>
+                            <div class="text-field__message"></div>
+                            </div>
+                            <div class="text-field">
+                            <label class="text-field__label" for="lastname">Фамилия (Обязательно)</label>
+                            <input class="text-field__input" type="text" name="lastname" id="lastname" required>
+                            <div class="text-field__message"></div>
+                            </div>
+                            <div class="text-field">
+                            <label class="text-field__label" for="email">Почта (Обязательно)</label>
+                            <input class="text-field__input" type="email" name="email" id="email" required>
+                            <div class="text-field__message"></div>
+                            </div>
+                            <div class="text-field">
+                            <label class="text-field__label" for="city">Город</label>
+                            <input class="text-field__input" type="text" name="city" id="city">
+                            <div class="text-field__message"></div>
+                            </div>
+                            <div class="text-field">
+                            <label class="text-field__label" for="question">Опишите вопрос либо проблему</label>
+                            <input class="text-field__input" type="text" name="question" id="question">
+                            <div class="text-field__message"></div>
+                            </div>
+                            <button type="submit" class="custom-btn btn-3">
+                                <span>Отправить</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </center>
+  </main>
+  {% endblock content %}
+</body>
+</html>

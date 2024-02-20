@@ -1,0 +1,12 @@
+                <select class="text-field__input" id="type" name="type">
+                    <option value="" selected disabled hidden>Нажмите чтобы выбрать место</option>
+                    {% for seat in massiv %}
+                        {% if forloop.counter not in tickets %}
+                            {% if seat|divisibleby:2 %}
+                                <option value="{{ seat }}"> {{ seat }} (Верхнее) </option>
+                            {% else %}
+                                <option value="{{ seat }}"> {{ seat }} (Нижнее) </option>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </select>

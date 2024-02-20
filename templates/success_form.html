@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <center>
+        <h2>Ваша заявка успешно отправлена. Ответ поступит на вашу почту.</h2>
+        <a href="/" class="btn">На главную</a>
+    </center>
+  </main>
+  {% endblock content %}
+</body>
+</html>
