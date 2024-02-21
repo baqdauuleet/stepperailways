@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .reviews-list {
+            display: flex; /* Используем flexbox */
+            flex-direction: column; /* Располагаем элементы вертикально */
+            align-items: center; /* Центрируем элементы по горизонтали */
+            width: 60%; /* Установка ширины блока (можно изменить) */
+            margin: 0 auto; /* Центрируем блок по горизонтали */
+            /* Дополнительные стили в соответствии с вашим дизайном */
+        }
+        .reviews-list ul {
+            list-style: none; /* Удаление стандартного стиля списка */
+            padding: 0;
+            text-align: left; /* Выравнивание текста в списке слева */
+        }
+        .container-buttons button { 
+            display:inline-block;
+            zoom:1; 
+            vertical-align:top;
+        }
+        .container-buttons { 
+            text-align:justify;
+        }
+        .container-buttons:after {
+            display:inline-block; 
+            zoom:1;
+            width:100%;
+            content:"";
+        }
+        .wider-input {
+            width: 100%; /* Или укажите необходимую ширину, например, width: 300px; */
+            height: 200%;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+        <center>
+            <div class="reviews-list">
+                {% if reviews %}
+                    {% for res in reviews %}
+                        <h2>Отзыв №{{ res.rid }}</h2>
+                        <b>Оценка: </b><i>{{ res.rating }} </i><br>
+                        <b>Пользователь: </b><i>{{ res.author }}</i><br>
+                        <b>Комментарий: </b><i>{{ res.text }}</i><br>
+                        {% if res.author == request.user.username %}
+                            <a href="{% url 'delete' res.rid %}">Удалить отзыв</a>
+                        {% endif %}
+                        <br><br>
+                    {% endfor %}
+                    {% if request.user.is_authenticated %}
+                        <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+                            <div class="container-buttons">
+                                <h3>Оставьте отзыв.</h3>
+                                <form method="POST" action="{% url 'create' %}">
+                                    {% csrf_token %}
+                                    <label class="text-field__label" for="rating">Ваша оценка:</label>
+                                    <select class="text-field__input" id="rating" name="rating">
+                                        <option value="" selected disabled hidden>Нажмите чтобы выбрать</option>
+                                            <option value="1"> 1 </option>
+                                            <option value="2"> 2 </option>
+                                            <option value="3"> 3 </option>
+                                            <option value="4"> 4 </option>
+                                            <option value="5"> 5 </option>
+                                    </select>
+                                    <br>
+                                    <div class="text-field">
+                                        <label class="text-field__label" for="review">Введите комментарий:</label>
+                                        <input class="text-field__input wider-input" type="text" name="review" id="review" required>
+                                        <div class="text-field__message"></div>                                    
+                                    </div>
+                                    <button type="submit" class="custom-btn btn-3">
+                                        <span>Отправить</span>
+                                    </button>
+                                </form>
+                                <br>
+                                <form method="POST" action="{% url 'index' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="custom-btn btn-3">
+                                        <span>Главная</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <br> <br> <br>
+                    {% endif %}
+                {% else %}
+                    <h2>Отзывы не найдены.</h2>
+                    <h3>Оставьте отзыв.</h3>
+                    {% if request.user.is_authenticated %}
+                        <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+                            <div class="container-buttons">
+                                <form method="POST" action="{% url 'create' %}">
+                                    {% csrf_token %}
+                                    <label class="text-field__label" for="rating">Ваша оценка:</label>
+                                    <select class="text-field__input" id="rating" name="rating">
+                                        <option value="" selected disabled hidden>Нажмите чтобы выбрать</option>
+                                            <option value="1"> 1 </option>
+                                            <option value="2"> 2 </option>
+                                            <option value="3"> 3 </option>
+                                            <option value="4"> 4 </option>
+                                            <option value="5"> 5 </option>
+                                    </select>
+                                    <br>
+                                    <div class="text-field">
+                                        <label class="text-field__label" for="review">Введите комментарий:</label>
+                                        <input class="text-field__input wider-input" type="text" name="review" id="review" required>
+                                        <div class="text-field__message"></div>                                    
+                                    </div>
+                                    <button type="submit" class="custom-btn btn-3">
+                                        <span>Отправить</span>
+                                    </button>
+                                </form>
+                                <br>
+                                <form method="POST" action="{% url 'index' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="custom-btn btn-3">
+                                        <span>Главная</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <br> <br> <br>
+                    {% endif %}
+                    <br> <br> <br>
+                {% endif %}
+            </div>
+        </center>
+    {% endblock content %}
+</body>
+</html>

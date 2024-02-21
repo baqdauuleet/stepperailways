@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <center>
+    <h2>Регистрация</h2>
+    <div class="auth-buttons">
+      <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+        <form method="post">
+          {% csrf_token %}
+          <div class="text-field">
+            <label class="text-field__label" for="first_name">Имя (Обязательно)</label>
+            <input class="text-field__input" type="text" name="first_name" id="first_name" required>
+            <div class="text-field__message"></div>
+          </div>
+          <div class="text-field">
+            <label class="text-field__label" for="username">Имя пользователя (Обязательно)</label>
+            <input class="text-field__input" type="text" name="username" id="username" required>
+            <div class="text-field__message"></div>
+          </div>
+          <div class="text-field">
+            <label class="text-field__label" for="email">Почта (Обязательно)</label>
+            <input class="text-field__input" type="email" name="email" id="email" required>
+            <div class="text-field__message"></div>
+          </div>
+          <div class="text-field">
+            <label class="text-field__label" for="password">Пароль</label>
+            <input class="text-field__input" type="password" name="password1" id="password1">
+            <div class="text-field__message"></div>
+            <br>
+          <div class="text-field">
+            <label class="text-field__label" for="password">Повторите пароль</label>
+            <input class="text-field__input" type="password" name="password2" id="password2">
+            <div class="text-field__message"></div>
+          </div>
+          {% if form.first_name.errors %}
+            {{ form.first_name.errors }}
+          {% endif %}
+          {% if form.username.errors %}
+            {{ form.username.errors }}
+          {% endif %}
+          {% if form.email.errors %}
+            {{ form.email.errors }}
+          {% endif %}
+          {% if form.password1.errors %}
+            {{ form.password1.errors }}
+          {% endif %}
+          {% if form.password2.errors %}
+            {{ form.password2.errors }}
+          {% endif %}
+          <button type="submit" class="custom-btn btn-3">
+              <span>Отправить</span>
+          </button>
+          <br>
+        </form>
+        <p><a href="/login"> Войдите</a> если уже есть существующий аккаунт.</p>
+      </div>
+    </div>
+    </center>
+  </main>
+  {% endblock content %}
+</body>
+</html>

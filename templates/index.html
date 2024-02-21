@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <div class="index">
+      <center>
+        <form method="POST" action="{% url 'find_trains' %}">
+          {% csrf_token %}
+          <section id="search">
+              <h2>Поиск билетов</h2>
+              <div class="text-field">
+                  <label class="text-field__label" for="from_city">Откуда:</label>
+                  <select class="text-field__input" id="from_city" name="from_city">
+                    <option value="" selected disabled hidden>Нажмите чтобы выбрать</option>
+                      {% for from_city in from_city %}
+                          <option value="{{ from_city.city }}">{{ from_city.city }}</option>
+                      {% endfor %}
+                  </select>
+                  <br>
+                  <div class="text-field__message"></div>
+                  <label class="text-field__label" for="to_city">Куда:</label>
+                  <select class="text-field__input" id="to_city" name="to_city">
+                    <option value="" selected disabled hidden>Нажмите чтобы выбрать</option>
+                    {% for to_city in to_city %}
+                        <option value="{{ to_city.city }}">{{ to_city.city }}</option>
+                    {% endfor %}
+                  </select>
+                  <div class="text-field__message"></div>
+              </div>
+              <br>
+              <label for="date">Дата:</label>
+              <input type="date" id="date" name="date">
+          </section>
+          <button type="submit" class="custom-btn btn-3">
+              <span>Поиск билетов</span>
+          </button>
+        </form>      
+      </center>
+    </div>
+  </main>
+  {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска поездов</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% block content %}
+    <center>
+        <h1>Результаты поиска поездов</h1>
+        <div class="train-list">
+            {% if trains %}
+                <ul>
+                    {% for train in trains %}
+                        <li>
+                            <h2>Поезд №{{ train.number }}</h2>
+                            <p>Маршрут: {{ train.route }}</p>
+                            <p>Уровень обслуживания: {{ train.service_level }}</p>
+                            <form action="{% url 'buy_ticket' train.tid %}" method="get">
+                                <button type="submit" class="custom-btn btn-3">
+                                    <span>Детали</span>
+                                </button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>По вашему запросу ничего не найдено.</p>
+                <form method="POST" action="{% url 'index' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="custom-btn btn-3">
+                        <span>Главная</span>
+                    </button>
+                  </form> 
+            {% endif %}
+        </div>
+    </center>
+    {% endblock content %}
+</body>
+</html>

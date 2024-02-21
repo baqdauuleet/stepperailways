@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <div class="container-main">
+        <section class="main-content">
+            <div class="main-content-background">
+                <h2>О компании Steppe Railways</h2>
+                <p>Steppe Railways - ведущий провайдер пассажирских перевозок по железнодорожным маршрутам Казахстана. Наша компания специализируется на обеспечении надежных и комфортных поездок для пассажиров, связывая ключевые города и регионы страны.</p>
+                <p>Мы стремимся быть надёжным партнёром для всех, кто выбирает железнодорожный транспорт в Казахстане. Наша миссия - предоставлять безопасные и высококачественные услуги пассажирских перевозок, создавая при этом удобные и приятные условия для каждого путешественника.</p>
+                <p>Steppe Railways - ваш надёжный партнёр в путешествиях по железной дороге Казахстана. Путешествуйте с комфортом и уверенностью вместе с нами!</p>
+                <a href="/" class="btn">На главную</a>
+                <br>
+                <br>
+            </div>
+        </section>
+    </div>
+  </main>
+  {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteppeRailways - Поиск билетов</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+  {% block content %}
+  <main>
+    <center>
+    <h2>Авторизация</h2>
+    <div class="auth-buttons">
+      <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+        <div class="login-btn">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="text-field">
+              <label class="text-field__label" for="username">Имя пользователя</label>
+              <input class="text-field__input" type="text" name="username" id="username" required>
+              <div class="text-field__message"></div>
+            </div>
+            <div class="text-field">
+              <label class="text-field__label" for="password">Пароль</label>
+              <input class="text-field__input" type="password" name="password" id="password">
+              <div class="text-field__message"></div>
+              <br>
+            </div>
+            {% if form.errors %}
+              {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
+            <button type="submit" class="custom-btn btn-3">
+              <span>Вход</span>
+            </button>
+          </form>
+          <p><a href="/registration"> Зарегистрируйтесь</a> если у вас нет есть существующего аккаунта.</p>
+        </div>
+      </div>
+    </center>
+  </main>
+  {% endblock content %}
+</body>
+</html>

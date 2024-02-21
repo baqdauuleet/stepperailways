@@ -1,0 +1,60 @@
+├── App.razor
+├── Areas
+  └── Identity
+      └── Pages
+          ├── Account
+            ├── Login.cshtml
+            ├── Login.cshtml.cs
+            ├── Logout.cshtml
+            ├── Logout.cshtml.cs
+            ├── Register.cshtml
+            └── Register.cshtml.cs
+          ├── _IdentityLayout.cshtml
+          ├── _ViewImports.cshtml
+          └── _ViewStart.cshtml
+├── CarKeep.csproj
+├── Data
+  ├── Car.cs
+  └── DataContext.cs
+├── Migrations
+  ├── 20240218160228_f1.Designer.cs
+  ├── 20240218160228_f1.cs
+  └── DataContextModelSnapshot.cs
+├── Pages
+  ├── Error.cshtml
+  ├── Error.cshtml.cs
+  ├── Index.razor
+  ├── MyCars.razor
+  └── _Host.cshtml
+├── Program.cs
+├── Properties
+  └── launchSettings.json
+├── Shared
+  ├── LoginDisplay.razor
+  ├── MainLayout.razor
+  ├── MainLayout.razor.css
+  ├── NavMenu.razor
+  └── NavMenu.razor.css
+├── _Imports.razor
+├── appsettings.Development.json
+├── appsettings.json
+├── wwwroot
+    ├── css
+      ├── bootstrap
+        ├── bootstrap.min.css
+        └── bootstrap.min.css.map
+      ├── open-iconic
+        ├── FONT-LICENSE
+        ├── ICON-LICENSE
+        ├── README.md
+        └── font
+            ├── css
+              └── open-iconic-bootstrap.min.css
+            └── fonts
+                ├── open-iconic.eot
+                ├── open-iconic.otf
+                ├── open-iconic.svg
+                ├── open-iconic.ttf
+                └── open-iconic.woff
+      └── site.css
+    └── favicon.png
